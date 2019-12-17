@@ -1,0 +1,12 @@
+button {
+  padding: 6px;
+  margin: 2px;
+  font-family: Helvetica, sans-serif;
+  font-weight: bold;
+  background: lightseagreen;
+}
+
+input {
+  padding: 6px;
+  margin: 2px;
+}

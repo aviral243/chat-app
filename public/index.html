@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html>
-  <head> </head>
+  <head>
+    <link rel="stylesheet" href="./index.css" type="text/css" />
+  </head>
   <body>
     <h1>Chat App</h1>
+    <form id="message-form">
+      <input name="message" placeholder="Type your message" />
+      <button>Send</button>
+    </form>
+
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/chat.js"></script>
   </body>
