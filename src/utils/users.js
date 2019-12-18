@@ -43,6 +43,18 @@ const removeUser = id => {
   }
 };
 
+const getUser = id => {
+  return users.find(user => {
+    return user.id === id;
+  });
+};
+
+const getUsersInRoom = room => {
+  return users.filter(user => {
+    return user.room !== room;
+  });
+};
+
 module.exports({
   addUser,
   removeUser
