@@ -12,6 +12,13 @@ const {
   generateLocationMessage
 } = require("./utils/messages");
 
+const {
+  addUser,
+  removeUser,
+  getUser,
+  getUsersInRoom
+} = require("./utils/users");
+
 const port = process.env.PORT || 3000;
 const publicDirectoryPath = path.join(__dirname, "../public");
 
@@ -20,13 +27,24 @@ app.use(express.static(publicDirectoryPath));
 io.on("connection", socket => {
   console.log("New WebSocket connection.");
 
-  socket.on("join", ({ username, room }) => {
-    socket.join(room);
-    // io.to.emit, socket.broadcast.to.emit
+  socket.on("join", (options, callback) => {
+    const { error, user } = addUser({ id: socket.id, ...options });
+
+    if (error) {
+      return callback(error);
+    }
+
+    socket.join(user.room);
+
     socket.emit("message", generateMessage("Welcome!"));
     socket.broadcast
-      .to(room)
-      .emit("message", generateMessage(`${username} has joined the chat!`));
+      .to(user.room)
+      .emit(
+        "message",
+        generateMessage(`${user.username} has joined the chat!`)
+      );
+
+    callback();
   });
 
   socket.on("sendMessage", (message, callback) => {
