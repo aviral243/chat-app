@@ -55,7 +55,7 @@ const getUsersInRoom = room => {
   });
 };
 
-module.exports{
+module.exports = {
   addUser,
   removeUser,
   getUser,
