@@ -87,5 +87,10 @@ socket.emit(
     username,
     room
   },
-  error => {}
+  error => {
+    if (error) {
+      alert(error);
+      location.href = "/";
+    }
+  }
 );
