@@ -51,7 +51,7 @@ const getUser = id => {
 
 const getUsersInRoom = room => {
   return users.filter(user => {
-    return user.room !== room;
+    return user.room === room;
   });
 };
 
